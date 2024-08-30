@@ -1,4 +1,4 @@
-import 'package:docs_clone/login_screen.dart';
+import 'package:docs_clone/screens/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 
