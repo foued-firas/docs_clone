@@ -1,3 +1,4 @@
+import 'package:docs_clone/colors.dart';
 import 'package:flutter/material.dart';
 class Login_screen extends StatelessWidget {
   const Login_screen({super.key});
@@ -6,7 +7,20 @@ class Login_screen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Center(
-        child: ElevatedButton.icon(onPressed: (){}, icon:Image.asset('assets/g-logo-2.png', height: 20,) ,label: Text('Sign in with Google')),
+        child: ElevatedButton.icon(
+          onPressed: (){}, 
+          icon:Image.asset('assets/g-logo-2.png', 
+          height: 20,) ,
+          label: Text('Sign in with Google',
+          style: TextStyle(
+            color: kBlackColor,
+          ),),
+
+          style: ElevatedButton.styleFrom(
+            minimumSize: Size(150, 50),
+            backgroundColor: kwhiteColor,
+          )
+          ),
       ),
     );
   }
