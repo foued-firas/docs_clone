@@ -1,9 +1,15 @@
 const express = require("express");
 const mongoose = require("mongoose");
+const authRouter =require("./routes/auth")
 
 const PORT = process.env.PORT | 3001 ; 
 
 const app = express(); //initialate express
+
+//midelware
+app.use(express.json());
+app.use(authRouter);
+
 
 const DB ="mongodb+srv://firas:kUCcvUmsB221gIFY@cluster0.3clpx.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
 
