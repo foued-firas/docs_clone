@@ -7,7 +7,7 @@ authRouter.post('/api/signup' ,async (req, res)=>{
     try{
         const {name , email , profilePic} = req.body; // access information
 
-        //email already exists?
+        //email already exists? 
         let user =  await  User.findOne({
                 email :email
             });
@@ -24,7 +24,7 @@ authRouter.post('/api/signup' ,async (req, res)=>{
             res.json({user}) //send data to mongoDb
             
     }catch(e){
-
+res.status(500).json({error : e.message});
     }
 });
 module.exports = authRouter;
