@@ -1,4 +1,5 @@
 import 'package:docs_clone/constants.dart';
+import 'package:docs_clone/models/error_model.dart';
 import 'package:docs_clone/models/user_model.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -23,7 +24,10 @@ class AuthRepository {
     }) : _googleSignIn = googleSignIn,
      _client = client;
 
-    void signInWithGoogle()async{
+    Future<ErrorModel> signInWithGoogle()async{
+      ErrorModel error = ErrorModel(
+        error :"Some unexpected error occurred" ,
+         data:null);
       try{
        final user = await  _googleSignIn.signIn();
        if(user!=null){
@@ -48,6 +52,7 @@ class AuthRepository {
 
                   uid: jsonDecode(res.body)['user']['_id'],
               );
+              error = ErrorModel(error: null, data: newUser);
               break; 
                            
             }
@@ -56,7 +61,7 @@ class AuthRepository {
        }
 
       }catch(e){
-        print(e);
-      }
+        error = ErrorModel(error: null, data: null);
+      }return error ;
     }
 }
