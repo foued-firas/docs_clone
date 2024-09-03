@@ -8,6 +8,7 @@ const PORT = process.env.PORT | 3001 ;
 const app = express(); //initialate express
 
 //midelware
+app.use(cors());
 app.use(express.json());
 app.use(authRouter);
 
