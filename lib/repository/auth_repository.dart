@@ -17,11 +17,11 @@ class AuthRepository {
   final Client _client;
 
   AuthRepository(  {
-    
-   
     required GoogleSignIn googleSignIn,
     required Client client,
     }) : _googleSignIn = googleSignIn,
+
+    
      _client = client;
 
     Future<ErrorModel> signInWithGoogle()async{
