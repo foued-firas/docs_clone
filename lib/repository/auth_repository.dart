@@ -16,9 +16,13 @@ class AuthRepository {
   final GoogleSignIn _googleSignIn;
   final Client _client;
 
+
+  
   AuthRepository(  {
     required GoogleSignIn googleSignIn,
     required Client client,
+  
+  
     }) : _googleSignIn = googleSignIn,
 
     
@@ -29,6 +33,8 @@ class AuthRepository {
         error :"Some unexpected error occurred" ,
          data:null);
       try{
+
+        
        final user = await  _googleSignIn.signIn();
        if(user!=null){
       final userAcc =UserModel(
