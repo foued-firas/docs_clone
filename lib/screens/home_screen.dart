@@ -12,8 +12,13 @@ class HomeScreen extends ConsumerWidget {
         child: Text(ref.watch(
           userProvider
         )!.email,
+
+
+
+
         
         )
+        
       ),
     );
   }
