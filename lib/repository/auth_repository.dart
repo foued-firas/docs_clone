@@ -24,8 +24,6 @@ class AuthRepository {
   
   
     }) : _googleSignIn = googleSignIn,
-
-    
      _client = client;
 
     Future<ErrorModel> signInWithGoogle()async{
@@ -34,14 +32,15 @@ class AuthRepository {
          data:null);
       try{
 
-        
+
        final user = await  _googleSignIn.signIn();
        if(user!=null){
       final userAcc =UserModel(
         email: user.email,
-         name: user.displayName!,
+          name: user.displayName!,
           profilePic: user.photoUrl!,
-           uid: '', token: '',
+          uid: '',
+          token: '',
            );
        var res = await     _client.post(
             Uri.parse('$host/api/signup'),
@@ -70,4 +69,4 @@ class AuthRepository {
         error = ErrorModel(error: null, data: null);
       }return error ;
     }
-}
+ }
