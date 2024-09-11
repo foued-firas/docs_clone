@@ -1,9 +1,10 @@
 const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
-const authRouter =require("./routes/auth")
 
-const PORT = process.env.PORT | 3001 ; 
+const authRouter = require("./routes/auth");
+
+const PORT = process.env.PORT | 3001;
 
 const app = express(); //initialate express
 

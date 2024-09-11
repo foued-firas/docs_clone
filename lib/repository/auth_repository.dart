@@ -27,9 +27,11 @@ class AuthRepository {
      _client = client;
 
     Future<ErrorModel> signInWithGoogle()async{
+
       ErrorModel error = ErrorModel(
         error :"Some unexpected error occurred" ,
-         data:null);
+         data:null,
+         );
       try{
 
 
@@ -47,6 +49,7 @@ class AuthRepository {
            body: userAcc.toJson(),
             headers: {
                'Content-Type': 'application/json; charset=UTF-8', // accept the json model
+               
          
 
             }
@@ -62,7 +65,6 @@ class AuthRepository {
                            
             }
            
-
        }
 
       }catch(e){
