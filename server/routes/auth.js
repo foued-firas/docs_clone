@@ -1,7 +1,7 @@
 const express = require('express');
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
-const authenticate = require("../middleware/authenticate");
+const auth = require("../middleware/authenticate");
 
 const authRouter = express.Router();
 
@@ -35,11 +35,11 @@ authRouter.post("/api/signup", async (req, res) => {
 });
 
 // Protected Route to Get User Info
-authRouter.get("/api/user", authenticate, async (req, res) => {
+authRouter.get("/", auth, async (req, res) => {
   try {
     // Find the user by ID
     const user = await User.findById(req.user);
-    res.json({ user });
+    res.json({ user , token : req.token});
   } catch (e) {
     res.status(500).json({ error: e.message });
   }
