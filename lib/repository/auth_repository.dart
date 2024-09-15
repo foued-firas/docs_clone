@@ -86,9 +86,10 @@ class AuthRepository {
         });
         switch(res.statusCode){
           case 200:
-          final newUser = UserModel.fromJson(res.body['user']);
+          final newUser = UserModel.fromJson(
+            jsonEncode(jsonDecode(res.body)['user']) );
           error =ErrorModel(error: null, data: newUser);
-
+          _localStorageRepository.setToken(newUser.token);
 
         }
         }
@@ -96,6 +97,9 @@ class AuthRepository {
       }catch(e){
         error =ErrorModel(error: e.toString(), data: null);
       }
+      return error;
+  
+      
 
   }
  }
