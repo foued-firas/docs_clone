@@ -43,7 +43,7 @@ class _MyAppState extends ConsumerState<MyApp> {
         
         
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-        useMaterial3: true,
+        useMaterial3: false,
       ),
       routerDelegate: RoutemasterDelegate(routesBuilder: (context){
             final user =ref.watch(userProvider);
