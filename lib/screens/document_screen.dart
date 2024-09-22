@@ -15,7 +15,7 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
 
-        body: Text(widget.id),
+        body: Center(child: Text(widget.id)),
         
     );
   }

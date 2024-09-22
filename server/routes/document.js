@@ -2,15 +2,15 @@ const express = require('express');
 const Document = require('../models/document');
 const documentRouter = express.Router();
 const auth = require('../middleware/authenticate');
-const authenticate = require('../middleware/authenticate');
-documentRouter.post('/doc/create',authenticate, async(req, res)=>{
-try{
-        const { createAt }=req.body;
+
+documentRouter.post("/doc/create",auth, async(req, res)=>{
+try {
+        const { createdAt }=req.body;
 
         let document =new Document ({
             uid : req.user,
             title :'Untitled Document',
-            createAt,
+            createdAt,
 
         });
         document = await document.save();
