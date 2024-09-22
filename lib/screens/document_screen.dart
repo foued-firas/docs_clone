@@ -41,7 +41,7 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
             icon: const Icon(
               
               Icons.lock,
-              size: 16,
+              size: 14,
             
             ),
              label: Text('Share'),
@@ -51,30 +51,39 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
             ),
          )
         ],
-        title: Padding(
-          padding: const EdgeInsets.all(9.0),
-          child: Row(
-            children: [
-              Image.asset('assets/docs-logo.png',
-              height: 40,),
-              SizedBox(height: 10,),
-              SizedBox(
-                width: 180,
-                child: TextField(
-                  controller: titleController,
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    focusedBorder: OutlineInputBorder(
-                      borderSide: BorderSide(
-                        color: kblueColor
-                      )
+        title: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.all(9.0),
+            child: SingleChildScrollView(
+              child: Row(
+                children: [
+                  Image.asset('assets/docs-logo.png',
+                  height: 40,),
+                  SizedBox(height: 10,),
+                  SizedBox(
+                    width: 180,
+                    child: SingleChildScrollView(
+                      child: SingleChildScrollView(
+                        child: TextField(
+                     
+                          controller: titleController,
+                          decoration: InputDecoration(
+                            border: InputBorder.none,
+                            focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(
+                                color: kblueColor
+                              )
+                            ),
+                            contentPadding: EdgeInsets.only(left: 10)
+                          ),
+                          
+                        ),
+                      ),
                     ),
-                    contentPadding: EdgeInsets.only(left: 10)
-                  ),
-                  
-                ),
-              )
-            ],
+                  )
+                ],
+              ),
+            ),
           ),
         ),
         bottom: PreferredSize(preferredSize: const Size.fromHeight(1), 
