@@ -1,4 +1,8 @@
 import 'package:docs_clone/colors.dart';
+import 'package:docs_clone/models/document_model.dart';
+import 'package:docs_clone/models/error_model.dart';
+import 'package:docs_clone/repository/auth_repository.dart';
+import 'package:docs_clone/repository/document_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_quill/flutter_quill.dart' as quill;
 import 'package:flutter_riverpod/flutter_riverpod.dart';
@@ -17,12 +21,37 @@ class DocumentScreen extends ConsumerStatefulWidget {
 class _DocumentScreenState extends ConsumerState<DocumentScreen> {
   TextEditingController titleController =TextEditingController(text: 'Untitled Document');
  final  quill.QuillController _controller =quill.QuillController.basic();
+  ErrorModel? errorModel;
+ @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchDocumentData();
+  }
+  void fetchDocumentData()async{
+     errorModel =
+    await ref.read(documentRepositoryProvider).getDocumentById(ref.read(userProvider)!.token ,widget.id
+    );
+    if(errorModel!.data!=null){
+      titleController.text=(errorModel!.data as DocumentModel).title;
+      setState(() {
+        
+      });
+    }
+  }
 
   @override
   void dispose() {
     // TODO: implement dispose
     super.dispose();
     titleController.dispose();
+  }
+
+  void updateTitle(WidgetRef ref , String title){
+    ref.read(documentRepositoryProvider).updateTitle(
+      token: ref.read(userProvider)!.token,
+       id: widget.id,
+        title: title );
   }
   @override
   Widget build(BuildContext context) {
@@ -44,7 +73,7 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
               size: 14,
             
             ),
-             label: Text('Share'),
+             label: const Text('Share'),
              style: ElevatedButton.styleFrom(
               backgroundColor: kblueColor,
              ),
@@ -59,7 +88,7 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
                 children: [
                   Image.asset('assets/docs-logo.png',
                   height: 40,),
-                  SizedBox(height: 10,),
+                  const SizedBox(height: 10,),
                   SizedBox(
                     width: 180,
                     child: SingleChildScrollView(
@@ -67,15 +96,17 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
                         child: TextField(
                      
                           controller: titleController,
-                          decoration: InputDecoration(
+                          decoration: const InputDecoration(
                             border: InputBorder.none,
                             focusedBorder: OutlineInputBorder(
                               borderSide: BorderSide(
                                 color: kblueColor
                               )
                             ),
-                            contentPadding: EdgeInsets.only(left: 10)
+                            contentPadding: EdgeInsets.only(left: 10),
+                            
                           ),
+                          onSubmitted: (value)=>updateTitle(ref, value),
                           
                         ),
                       ),
@@ -99,7 +130,7 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
         body: Center(
           child: Column(
             children: [
-              SizedBox(height: 10,),
+              const SizedBox(height: 10,),
               quill.QuillSimpleToolbar(
             controller: _controller,
             configurations: const quill.QuillSimpleToolbarConfigurations(),
