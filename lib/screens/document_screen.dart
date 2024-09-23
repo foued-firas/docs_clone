@@ -24,7 +24,7 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
   ErrorModel? errorModel;
  @override
   void initState() {
-    // TODO: implement initState
+   
     super.initState();
     fetchDocumentData();
   }
@@ -85,9 +85,10 @@ class _DocumentScreenState extends ConsumerState<DocumentScreen> {
             padding: const EdgeInsets.all(9.0),
             child: SingleChildScrollView(
               child: Row(
+                
                 children: [
                   Image.asset('assets/docs-logo.png',
-                  height: 40,),
+                  height: 24 ,),
                   const SizedBox(height: 10,),
                   SizedBox(
                     width: 180,
