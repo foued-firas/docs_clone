@@ -41,6 +41,7 @@ dependencies:
   http :
   routemaster: ^1.0.1
   flutter_quill: 
+  socket_io_client: ^1.0.2
 
 
 dev_dependencies:
