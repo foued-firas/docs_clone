@@ -6,6 +6,7 @@ import 'package:docs_clone/models/error_model.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:http/http.dart';
+
 final documentRepositoryProvider = Provider(
   (ref) => DocumentRepository(
     client: Client(),

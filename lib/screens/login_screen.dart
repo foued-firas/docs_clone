@@ -39,6 +39,7 @@ class Login_screen extends  ConsumerWidget {
           style: ElevatedButton.styleFrom(
             minimumSize: Size(150, 50),
             backgroundColor: kwhiteColor,
+            
           )
           ),
       ),
